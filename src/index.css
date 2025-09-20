@@ -1,0 +1,220 @@
+:root {
+    font-size: 10px;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: dark;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --borderRadius30: 1rem;
+    /*  */
+    --color-white: #ffffff;
+    --color-orange: #f59f0bb2;
+    --color-orange2: #f59f0b;
+    /* ff9800 */
+    --color-blue: #2f2feb;
+    --color-blue2: #2b7fff;
+    --color-red: #f54927;
+    --color-red2: #e63946;
+    --color-dark_red: #3e1709;
+    --color-green: #87f527;
+    --color-black-green: #153e09;
+    --color-light-green: #256b10;
+    --color-dark_grey: #242424;
+    --bsh: 0px 0px 1.2rem -1px var(--color-black-green),
+        inset 0px 0px 3rem -1px var(--color-black-green);
+    --border: 1px solid #000000;
+    --border-light-theme: 1px solid #d8d6d6;
+    --bsh-inset: inset 0px 0px 3rem -1px var(--color-orange);
+    --bsh-inset-green: inset 0px 0px 3rem -1px var(--color-light-green);
+    --bsh-inset-red: inset 0px 0px 3rem -1px var(--color-dark_red);
+    --bsh-theme-light: 0px 1px 5px -1px #2b7fff;
+}
+
+::-webkit-calendar-picker-indicator {
+    display: block; /* Скрывает стандартную иконку */
+    -webkit-appearance: none;
+    background-color: red;
+    background-image: url(./favicon.ico);
+}
+
+a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+    text-transform: uppercase;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+}
+table {
+    border-collapse: separate;
+    border: var(--border-light-theme);
+    width: max-content !important;
+    /* min-width: 100% !important; */
+    table-layout: auto;
+}
+tr {
+    position: relative;
+}
+tr > td,
+tr > th {
+    border: var(--border-light-theme);
+    padding: 0px 2rem !important;
+}
+ol,
+ul,
+li {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+}
+input {
+    outline: none;
+    border: none;
+    /* background-color: var(--color-white); */
+    /* color: #000000; */
+}
+button {
+    outline: none;
+    width: 100%;
+    border: 1px solid var(--color-light-green);
+    box-shadow: var(--bsh);
+    padding: 1rem 1.5rem;
+    border-radius: var(--borderRadius30);
+    margin: 0.3rem;
+    color: var(--color-white);
+    letter-spacing: 1.5px;
+    font-size: 1.8rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+figure {
+    margin: 0;
+}
+button[data-delete] {
+    /* background-color: #3e1709; */
+    border: 1px solid var(--color-red2);
+    box-shadow: 0px 0px 1.2rem -1px var(--color-dark_red),
+        inset 0px 0px 3rem -1px var(--color-dark_red);
+}
+button[data-update] {
+    box-shadow: var(--bsh-inset);
+    border: 1px solid var(--color-orange2);
+}
+ul,
+ol,
+li {
+    list-style-type: none;
+}
+/* tfoot {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--color-dark_grey);
+    font-weight: bold;
+} */
+/*
+button[data-edit] {
+    background-color: var(--color-blue);
+}
+button[data-view] {
+    background-color: var(--color-blue); */
+/* } */
+
+.swal2-popup.swal2-modal.swal2-show {
+    font-size: 2rem;
+}
+
+@media (max-width: 765px) {
+    html:root {
+        font-size: 5px !important;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color: #f7f7f7;
+        background-color: var(--color-dark_grey);
+    }
+    a:hover {
+        color: var(--color-orange);
+    }
+    input {
+        color: var(--color-white);
+    }
+    button:hover {
+        box-shadow: 0px 0px 12px -1px var(--color-light-green),
+            inset 0px 0px 30px -1px var(--color-light-green);
+    }
+    button[data-delete]:hover {
+        box-shadow: 0px 0px 12px -1px var(--color-red2),
+            inset 0px 0px 30px -1px var(--color-red);
+    }
+    button[data-update]:hover {
+        box-shadow: 0px 0px 12px -1px var(--color-orange2),
+            inset 0px 0px 30px -1px var(--color-orange2);
+    }
+    textarea {
+        border-radius: var(--borderRadius30);
+        border: var(--border-light-theme) !important;
+    }
+}
+@media (prefers-color-scheme: light) {
+    :root {
+        color: var(--color-dark_grey);
+        background-color: var(--color-white);
+    }
+    a:hover {
+        color: var(--color-orange);
+    }
+    input,
+    textarea {
+        border-radius: var(--borderRadius30);
+        color: var(--color-dark_grey);
+        background-color: var(--color-white);
+        border: var(--border-light-theme) !important;
+    }
+    button {
+        color: var(--color-white);
+        background-color: var(--color-blue);
+        box-shadow: none;
+        border: none;
+    }
+    button[data-delete] {
+        background-color: var(--color-red);
+        color: white;
+        box-shadow: none;
+    }
+    button[data-update] {
+        background-color: var(--color-light-green);
+        border: 1px solid var(--color-green);
+    }
+    tr:nth-child(2n) {
+        background: none !important;
+    }
+    tr:hover,
+    li:hover {
+        background: var(--color-blue2) !important;
+        border-radius: var(--borderRadius30);
+        color: var(--color-white);
+    }
+    select {
+        background-color: var(--color-white);
+        color: #000000;
+    }
+}
