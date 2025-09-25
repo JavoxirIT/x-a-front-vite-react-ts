@@ -3,6 +3,7 @@ import useServiceContract from '../Service/useServiceContract';
 import css from './Screen.module.css';
 import Card from '../Components/Card/Card';
 import useCustomNavigate from '../Hook/useCustomNavigate';
+import Title from '../Components/Title';
 
 const Archive = () => {
     const {
@@ -19,7 +20,7 @@ const Archive = () => {
     }, []);
     return (
         <div className={css.container}>
-            <h1>Arxiv</h1>
+            <Title title='Archive' type='h1' />
 
             {inProcess.length ? (
                 <div className={css.client_in_process_box}>

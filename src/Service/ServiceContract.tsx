@@ -56,6 +56,7 @@ const ServiceContract = ({ children }: ServiceProps) => {
     async function addContract(formData: FormData) {
         try {
             const response = await axiosInstance.post(`contracts`, formData);
+            console.log('if', response);
             if (response.status === 201) {
                 getContract(0);
                 Swal.fire({
@@ -64,7 +65,6 @@ const ServiceContract = ({ children }: ServiceProps) => {
                     icon: 'success',
                     confirmButtonColor: confirmButtonColorOrange,
                 });
-                console.log('if', response);
             } else {
                 console.log('elese', response);
                 throw new Error(`${response.status}: ${response.statusText}`);
@@ -375,7 +375,7 @@ const ServiceContract = ({ children }: ServiceProps) => {
                         const response = await axiosInstance.patch(link);
                         const data = await response.data;
                         if (response.status === 201) {
-                            getContaractPayments(id);
+                            getContaractPayments(Number(id));
                             getOneContract(Number(id));
                         } else {
                             throw new Error(
@@ -405,7 +405,7 @@ const ServiceContract = ({ children }: ServiceProps) => {
         }
     }
 
-    async function getContaractPayments(id: string) {
+    async function getContaractPayments(id: number) {
         setPaymentText(loading);
         try {
             const response = await axiosInstance.get(
@@ -422,22 +422,7 @@ const ServiceContract = ({ children }: ServiceProps) => {
             if (error instanceof AxiosError) {
                 setPaymentText(error.response?.data.message + '...');
             }
-            if (error instanceof Error) {
-                // Swal.fire({
-                //     theme: 'auto',
-                //     title: error.name,
-                //     text: error.message,
-                //     icon: 'error',
-                //     confirmButtonColor: confirmButtonColorOrange,
-                // });
-                // return;
-            }
-            // Swal.fire({
-            //     theme: 'auto',
-            //     title: String(error),
-            //     icon: 'error',
-            //     confirmButtonColor: confirmButtonColorOrange,
-            // });
+            setPaymentsData([]);
         }
     }
 
@@ -521,6 +506,7 @@ const ServiceContract = ({ children }: ServiceProps) => {
                                 // timer: 1500,
                             });
                             setPaymentsData(updateData);
+                            getOneContract(contract_id);
                         } else {
                             throw new Error(
                                 `${response.status}: ${data.message}`

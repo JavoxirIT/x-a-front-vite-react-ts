@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { notes, save } from '../Constant/textConstant';
 import dateLocalFormat from '../Config/dateLocalFormat';
+import Title from '../Components/Title';
 
 const Notes = () => {
     const { getNotes, loading, dataNotes, addNotes, deleteNotes } = useNotes();
@@ -18,7 +19,7 @@ const Notes = () => {
 
     return (
         <div className={css.container}>
-            <h1>{notes}</h1>
+            <Title title={notes} type='h1' />
 
             <section className={css.add_note_box}>
                 <textarea

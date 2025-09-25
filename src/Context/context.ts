@@ -27,7 +27,7 @@ interface InProcessContractValue {
     setIsDateSearch: (param: boolean) => void;
     stateText: string;
     addPayments: (id: string) => void;
-    getContaractPayments: (id: string) => void;
+    getContaractPayments: (id: number) => void;
     paymentsData: IPaymets[];
     editPayment: ({ pay, contract_id, id }: IPaymets) => Promise<void>;
     paymentText: string;
@@ -45,6 +45,7 @@ interface ILoginService {
     handelAuth: ({ username, password }: ILAuthData) => void;
     refreshAuth: () => void;
     logout: () => void;
+    change: () => void;
 }
 
 interface INotes {

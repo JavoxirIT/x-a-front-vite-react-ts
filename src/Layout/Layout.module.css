@@ -1,5 +1,8 @@
+.app_layout {
+}
+
 .container {
-    min-height: 100vh;
+    /* min-height: 100vh; */
 }
 
 /* AUTH */
@@ -18,7 +21,7 @@
     width: 400px;
     border-radius: var(--borderRadius30);
     backdrop-filter: blur(15px);
-    box-shadow: 0 0 5px var(--color-orange);
+    /* box-shadow: 0 0 5px var(--color-orange); */
 }
 .auth__form {
     display: flex;
@@ -61,8 +64,15 @@
         background-size: 100vw 100vh;
     }
 }
+@media (prefers-color-scheme: dark) {
+}
 
 @media (max-width: 765px) {
+    .app_layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 80px;
+    }
     .form__inp {
         font-size: 4rem;
     }

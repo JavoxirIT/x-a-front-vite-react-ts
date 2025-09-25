@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import css from './Screen.module.css';
 import useServiceContract from '../Service/useServiceContract';
 import { useEffect, useState } from 'react';
@@ -6,8 +6,9 @@ import Img from '../Components/Image/Img';
 import InProcessTable from '../Components/Table/InProcessTable';
 import { configs } from '../Config/config';
 import PaymentsList from '../Components/PaymentsList';
-import { addPayment } from '../Constant/textConstant';
+import { addPayment, editDelete, notFound } from '../Constant/textConstant';
 import ImageFullScreen from '../Components/Model/ImageFullScreen';
+import Title from '../Components/Title';
 
 type PropsType = {
     isShowAddPay: boolean;
@@ -26,10 +27,11 @@ const ContractOneScreen = ({ isShowAddPay = true }: PropsType) => {
         paymentText,
     } = useServiceContract();
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         getOneContract(Number(id));
-        getContaractPayments(id!);
+        getContaractPayments(Number(id));
         // eslint-disable-next-line
     }, [id]);
 
@@ -37,16 +39,24 @@ const ContractOneScreen = ({ isShowAddPay = true }: PropsType) => {
         <div className={css.one_client_screen}>
             <div className={css.container}>
                 <div className={css.one_client_title_box}>
-                    <h1>{inProcessOne?.name}</h1>
+                    <Title title={inProcessOne?.name as string} type='h1' />
                     {isShowAddPay && (
                         <button onClick={() => addPayments(id!)}>
                             {addPayment}
                         </button>
                     )}
+                    <button
+                        onClick={() =>
+                            navigate('/new-contract', {
+                                state: inProcessOne,
+                            })
+                        }>
+                        {editDelete}
+                    </button>
                 </div>
                 <div className={css.one_client_header}>
                     {!inProcessOne ? (
-                        <div>Topilmadi</div>
+                        <div>{notFound}</div>
                     ) : (
                         <InProcessTable inProcessOne={inProcessOne} />
                     )}

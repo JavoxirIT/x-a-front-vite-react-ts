@@ -1,8 +1,8 @@
-// api/axios.js
 import axios from 'axios';
+// api/axios.js
 
 const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_API_URL, // подхватит /api в dev и полный домен в prod
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true,
 });
 

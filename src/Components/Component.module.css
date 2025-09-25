@@ -1,17 +1,14 @@
 .container {
-    max-width: 1380px;
+    max-width: 1440px;
     margin: 0 auto;
     padding: 0 2rem;
-}
-
-.header {
-    /* box-shadow: 0.2rem 0 5px var(--color-orange); */
 }
 
 .header__nav {
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem 0;
+    flex-wrap: wrap;
+    padding: 0.8rem 0;
 }
 
 .nav__link__box {
@@ -22,12 +19,39 @@
 .nav__button__box {
     display: flex;
 }
-.nav__button__box button {
-    font-size: 1.6rem;
+.nav__button__box > button {
     padding: 1rem 3rem;
     border-radius: var(--borderRadius30);
 }
 
+.popup_button {
+    position: relative;
+    font-size: 1.6rem;
+    padding: 1rem 3rem;
+    border-radius: var(--borderRadius30);
+    background-color: var(--color-dark_red);
+}
+
+.popup {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    background-color: var(--color-dark_grey);
+    border-radius: var(--borderRadius30);
+    box-shadow: 0 0 5px -1px var(--color-white);
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.5s;
+    left: -100%;
+}
+
+.popup[popup-open] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
 /* CLIENT */
 
 .client_table {
@@ -67,14 +91,13 @@
 }
 .table_row_th {
     text-align: start;
-    font-size: 1.9rem;
+    font-size: 1rem;
     padding: 0.2rem;
     font-weight: 400;
 }
 .title {
-    font-size: 2.2rem;
     font-weight: bold;
-    margin: 2rem 0;
+    margin: 1rem 0;
 }
 
 /* FORM */
@@ -230,27 +253,28 @@
 
 /* search select */
 .client_sort_box_select {
-    flex: 1;
     min-width: 200px;
-    height: 5rem;
     border-radius: var(--borderRadius30);
+    height: 5rem;
+    margin-bottom: 1rem;
 }
 .client_sort_select {
+    font-size: 2rem;
     width: 100%;
     height: 100%;
     border: var(--border);
     outline: none;
     border-radius: var(--borderRadius30);
+    padding: 0 10px;
 }
 
 /* sort by date */
+
 .client_sort_box_date {
     flex: 1;
     min-width: 200px;
     height: 5rem;
     border-radius: var(--borderRadius30);
-}
-.client_sort_box_date {
     display: flex;
     gap: 1rem;
 }
@@ -264,6 +288,7 @@
     padding: 0 1rem;
     border: none;
     border-radius: var(--borderRadius30);
+    font-size: 2rem;
 }
 
 .client_sort_box_date button {
@@ -275,7 +300,6 @@
 
 .one_client_header_table {
     flex: 1;
-    max-width: 50%;
     border-collapse: collapse;
 }
 
@@ -289,17 +313,18 @@
 .list_ol {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    justify-content: center;
+    gap: 0.4rem;
 }
 .list_item {
     list-style-type: none;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 3rem;
-    font-size: 2.4rem;
+    font-size: 1.4rem;
     /* border: var(--border); */
-    padding: 1rem 2rem;
+    padding: 0 0.5rem;
     border-radius: var(--borderRadius30);
     border: var(--border);
     text-align: justify;
@@ -336,7 +361,44 @@
     justify-content: space-between; */
 }
 
+/* bottom bar */
+.bottom_bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    box-shadow: 0 -2px 10px -7px var(--color-white);
+    background-color: var(--color-dark_grey);
+}
+.bottom_bar_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+.bottom_bar_item svg {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+.bottom_bar_item span {
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+@media (min-width: 766px) {
+    .bottom_bar {
+        display: none;
+    }
+}
+
 @media (max-width: 765px) {
+    .header {
+        display: none;
+    }
     .add_new_form_btn {
         font-size: 5rem;
     }
@@ -372,6 +434,9 @@
     .card__content_table > tbody > tr > td > div {
         font-size: 2rem;
     }
+    .file_title {
+        font-size: 3rem;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -389,7 +454,8 @@
         border: var(--border-light-theme);
     }
     .list_item {
-        border: var(--border-light-theme);
+        border: none;
+        border-bottom: var(--border-light-theme);
     }
     .list_item:hover {
         box-shadow: var(--bsh-theme-light);
@@ -412,5 +478,19 @@
     .table_tbody_row > td:nth-last-child(1) {
         background-color: var(--color-white);
         /* border: 1px solid black; */
+    }
+    .popup {
+        background-color: var(--color-white);
+        border-radius: var(--borderRadius30);
+        box-shadow: 0 0 5px -1px var(--color-dark_grey);
+    }
+    .card {
+        border: var(--border-light-theme);
+    }
+    .bottom_bar {
+        background-color: var(--color-white);
+    }
+    .bottom_bar_item svg {
+        color: var(--color-blue2);
     }
 }

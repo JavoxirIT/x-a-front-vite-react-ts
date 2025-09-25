@@ -16,6 +16,9 @@ export const save: string = 'Saqlash';
 export const yesDeleyteIt: string = 'Ha, o`chiramiz!';
 export const moreDetails: string = 'Batafsil';
 export const textDelete: string = 'O`chirish';
+export const editDelete: string = 'O`zgartirish';
+export const passwordAndToken: string = 'Parol va login';
+export const notFound: string = 'Topilmadi';
 
 //! Сообщения / уведомления
 export const addedPayments: string = 'Toʻlov qoʻshish';

@@ -5,6 +5,7 @@ import Input from './Input';
 import InputFile from './InputFile';
 import { addImage, save } from '../../Constant/textConstant';
 import useServiceContract from '../../Service/useServiceContract';
+import { useLocation } from 'react-router-dom';
 
 type FormValues = {
     clientName: string;
@@ -20,6 +21,7 @@ type FormValues = {
 };
 
 const AddANewContract = () => {
+    const { state } = useLocation();
     const { addContract } = useServiceContract();
     const [files, setFiles] = useState<File[]>([]);
 
@@ -33,9 +35,13 @@ const AddANewContract = () => {
         resetField,
     } = useForm<FormValues>({
         defaultValues: {
-            price: 0,
-            addedAnmount: 0,
-            firstPayment: 0,
+            clientName: state?.name || '',
+            startDate: state?.start_date || '',
+            endDate: state?.end_date || '',
+            price: state?.price || 0,
+            addedAnmount: state?.added_anmount || 0,
+            firstPayment: state?.first_payment || 0,
+            avto: state?.avto_info || '',
         },
     });
 
@@ -207,22 +213,15 @@ const AddANewContract = () => {
                                 inpMode='numeric'
                                 value={(totalPrice < firstPayment
                                     ? 0
-                                    : totalPrice - firstPayment
+                                    : totalPrice -
+                                      firstPayment -
+                                      Number(state?.next_payment ?? 0)
                                 ).toString()}
                                 name={''}
                             />
                         </div>
                         {/* Car Info */}
                         <div style={{ width: '100%' }}>
-                            {/* <Input
-                                id={2}
-                                label='Avtomashina ma`lumotlari'
-                                type='text'
-                                inpMode='text'
-                                {...register('avto', {
-                                    required: 'Avtomashina nomini kiriting',
-                                })}
-							/> */}
                             <label className={css.label} htmlFor='2'>
                                 <span className={css.label_span}>
                                     Qo`shimcha ma`lumotlar
@@ -235,14 +234,7 @@ const AddANewContract = () => {
                                 placeholder='Masalan moshin nomeri'
                                 maxLength={1000}
                                 rows={10}
-                                {...register('avto', {
-                                    required: 'Avtomashina nomini kiriting',
-                                })}></textarea>
-                            {errors.avto && (
-                                <span className={css.error}>
-                                    {errors.avto.message}
-                                </span>
-                            )}
+                                {...register('avto')}></textarea>
                         </div>
                         {/* Files */}
                         <div className={css.input_container}>
@@ -252,8 +244,6 @@ const AddANewContract = () => {
                                 name='images'
                                 rules={{
                                     validate: () => {
-                                        if (files.length === 0)
-                                            return 'Rasim qo`shilmagan';
                                         if (files.length > 10)
                                             return '10 tadan ziyod mumkin emas';
                                         if (

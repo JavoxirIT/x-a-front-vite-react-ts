@@ -1,8 +1,9 @@
 :root {
-    font-size: 10px;
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
+    font-stretch: 100%;
 
     color-scheme: dark;
 
@@ -11,7 +12,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    --borderRadius30: 1rem;
+    --borderRadius30: 0.4rem;
     /*  */
     --color-white: #ffffff;
     --color-orange: #f59f0bb2;
@@ -37,7 +38,7 @@
 }
 
 ::-webkit-calendar-picker-indicator {
-    display: block; /* Скрывает стандартную иконку */
+    display: block;
     -webkit-appearance: none;
     background-color: red;
     background-image: url(./favicon.ico);
@@ -52,15 +53,15 @@ a {
 
 body {
     margin: 0;
-    display: flex;
-    place-items: center;
+    /* display: flex;
+    place-items: center; */
     min-width: 320px;
     min-height: 100vh;
 }
 table {
     border-collapse: separate;
     border: var(--border-light-theme);
-    width: max-content !important;
+    /* width: max-content !important; */
     /* min-width: 100% !important; */
     table-layout: auto;
 }
@@ -80,7 +81,7 @@ li {
 }
 
 h1 {
-    font-size: 3.2em;
+    font-size: 2.2em;
     line-height: 1.1;
 }
 input {
@@ -90,16 +91,16 @@ input {
     /* color: #000000; */
 }
 button {
+    min-width: 10rem;
     outline: none;
     width: 100%;
     border: 1px solid var(--color-light-green);
     box-shadow: var(--bsh);
-    padding: 1rem 1.5rem;
+    padding: 0.7rem;
     border-radius: var(--borderRadius30);
     margin: 0.3rem;
     color: var(--color-white);
     letter-spacing: 1.5px;
-    font-size: 1.8rem;
     background-color: transparent;
     cursor: pointer;
 }
@@ -113,8 +114,7 @@ button[data-delete] {
         inset 0px 0px 3rem -1px var(--color-dark_red);
 }
 button[data-update] {
-    box-shadow: var(--bsh-inset);
-    border: 1px solid var(--color-orange2);
+    border: var(--border);
 }
 ul,
 ol,
@@ -142,7 +142,7 @@ button[data-view] {
 
 @media (max-width: 765px) {
     html:root {
-        font-size: 5px !important;
+        font-size: 7px !important;
     }
 }
 
