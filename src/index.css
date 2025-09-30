@@ -35,6 +35,7 @@
     --bsh-inset-green: inset 0px 0px 3rem -1px var(--color-light-green);
     --bsh-inset-red: inset 0px 0px 3rem -1px var(--color-dark_red);
     --bsh-theme-light: 0px 1px 5px -1px #2b7fff;
+    --bsh-theme2: 2px 2px 3px #dadada;
 }
 
 ::-webkit-calendar-picker-indicator {
@@ -98,7 +99,6 @@ button {
     box-shadow: var(--bsh);
     padding: 0.7rem;
     border-radius: var(--borderRadius30);
-    margin: 0.3rem;
     color: var(--color-white);
     letter-spacing: 1.5px;
     background-color: transparent;
@@ -137,7 +137,7 @@ button[data-view] {
 /* } */
 
 .swal2-popup.swal2-modal.swal2-show {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 @media (max-width: 765px) {

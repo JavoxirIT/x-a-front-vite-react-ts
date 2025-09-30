@@ -13,7 +13,7 @@ interface InProcessContractValue {
     inProcess: IClientData[];
     inProcessTotalAnmoutfooterData: IClientDataPay;
     deleteContarct: (id: number) => void;
-    addContract: (param: FormData) => Promise<void>;
+    addContract: (param: FormData, contractId: number | null) => Promise<void>;
     getOneContract: (param: number) => Promise<void>;
     inProcessOne: IClientData | null;
     selectedContract: (param: number) => void;

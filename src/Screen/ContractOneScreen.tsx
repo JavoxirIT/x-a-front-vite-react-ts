@@ -45,14 +45,16 @@ const ContractOneScreen = ({ isShowAddPay = true }: PropsType) => {
                             {addPayment}
                         </button>
                     )}
-                    <button
-                        onClick={() =>
-                            navigate('/new-contract', {
-                                state: inProcessOne,
-                            })
-                        }>
-                        {editDelete}
-                    </button>
+                    {isShowAddPay && (
+                        <button
+                            onClick={() =>
+                                navigate('/new-contract', {
+                                    state: inProcessOne,
+                                })
+                            }>
+                            {editDelete}
+                        </button>
+                    )}
                 </div>
                 <div className={css.one_client_header}>
                     {!inProcessOne ? (

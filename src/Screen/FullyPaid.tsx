@@ -1,14 +1,17 @@
-import Table from '../Components/Table/Table';
 import Title from '../Components/Title';
 import { fullPaidTitle } from '../Constant/textConstant';
-import { tableHeaderFullPaid } from '../Data/tableData';
 import css from './Screen.module.css';
 import useCustomNavigate from '../Hook/useCustomNavigate';
 import useServiceContract from '../Service/useServiceContract';
 import { useEffect, useMemo } from 'react';
 import numberLocalFormat from '../Config/numberLocalFormat';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
+import {
+    faEye,
+    faMagnifyingGlass,
+    faXmark,
+} from '@fortawesome/free-solid-svg-icons';
+import dateLocalFormat from '../Config/dateLocalFormat';
 
 const FullyPaid = () => {
     const naigate = useCustomNavigate('full-paid');
@@ -96,13 +99,34 @@ const FullyPaid = () => {
                 </section>
             </section>
             <div className={css.client_table_box}>
-                <Table
-                    header={tableHeaderFullPaid}
-                    rows={fullPaid}
-                    footerData={clientFlPdDt}
-                    goToRoute={naigate}
-                    isDeleteButton={false}
-                />
+                {fullPaid.map(x => (
+                    <div key={x.id}>
+                        <p>{x.name.slice(0, 40)}</p>
+                        <p>
+                            <span>Brildi:</span>{' '}
+                            <span>{dateLocalFormat(x.start_date)}</span>
+                        </p>
+                        <p>
+                            <span>Tugatildi:</span>{' '}
+                            <span>{dateLocalFormat(x.end_date)}</span>
+                        </p>
+                        <p>
+                            <span>Tan narxi:</span>{' '}
+                            <span>{numberLocalFormat(x.price)}</span>
+                        </p>
+                        <p>
+                            <span>Qo'shildi:</span>
+                            <span>{numberLocalFormat(x.added_anmount)}</span>
+                        </p>
+                        <p>
+                            <span>Jami:</span>{' '}
+                            <span>{numberLocalFormat(x.totalAnmount)}</span>
+                        </p>
+                        <button onClick={() => naigate(x.id)}>
+                            <FontAwesomeIcon icon={faEye} />
+                        </button>
+                    </div>
+                ))}
             </div>
         </div>
     );

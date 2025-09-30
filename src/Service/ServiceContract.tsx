@@ -53,10 +53,12 @@ const ServiceContract = ({ children }: ServiceProps) => {
     const [isDateSearchFullPaid, setIsDateSearchFullPaid] =
         useState<boolean>(true);
 
-    async function addContract(formData: FormData) {
+    async function addContract(formData: FormData, contractId: number | null) {
         try {
-            const response = await axiosInstance.post(`contracts`, formData);
-            console.log('if', response);
+            const response = await axiosInstance.post(
+                `contracts?id=${contractId}`,
+                formData
+            );
             if (response.status === 201) {
                 getContract(0);
                 Swal.fire({
@@ -66,16 +68,17 @@ const ServiceContract = ({ children }: ServiceProps) => {
                     confirmButtonColor: confirmButtonColorOrange,
                 });
             } else {
-                console.log('elese', response);
                 throw new Error(`${response.status}: ${response.statusText}`);
             }
         } catch (error) {
-            Swal.fire({
-                theme: 'auto',
-                title: String(error),
-                icon: 'error',
-                confirmButtonColor: confirmButtonColorOrange,
-            });
+            if (error instanceof AxiosError) {
+                Swal.fire({
+                    theme: 'auto',
+                    title: error.response?.data.message,
+                    icon: 'error',
+                    confirmButtonColor: confirmButtonColorOrange,
+                });
+            }
         }
     }
 
@@ -383,11 +386,11 @@ const ServiceContract = ({ children }: ServiceProps) => {
                             );
                         }
                     } catch (error) {
-                        if (error instanceof Error) {
+                        if (error instanceof AxiosError) {
                             Swal.fire({
                                 theme: 'auto',
-                                title: error.name,
-                                text: error.message,
+                                title: error.response?.data.message,
+                                text: '',
                                 icon: 'error',
                                 confirmButtonColor: confirmButtonColorOrange,
                             });

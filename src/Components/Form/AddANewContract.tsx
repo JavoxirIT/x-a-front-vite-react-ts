@@ -22,6 +22,7 @@ type FormValues = {
 
 const AddANewContract = () => {
     const { state } = useLocation();
+    console.log('state', state);
     const { addContract } = useServiceContract();
     const [files, setFiles] = useState<File[]>([]);
 
@@ -51,6 +52,7 @@ const AddANewContract = () => {
     const totalPrice = price + addedAnmount;
 
     const onSubmit = (data: FormValues) => {
+        const contarctId = state ? state.id : null;
         const formData = new FormData();
         // сначала обычные поля (кроме файлов)
         Object.entries(data).forEach(([key, value]) => {
@@ -63,8 +65,10 @@ const AddANewContract = () => {
         files.forEach(file => {
             formData.append('images', file);
         });
-
-        addContract(formData);
+        // formData.forEach((value, key) => {
+        //     console.log(key, value);
+        // });
+        addContract(formData, contarctId);
         reset();
         resetField('images');
         setFiles([]);

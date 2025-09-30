@@ -34,12 +34,28 @@
     margin-top: 2rem;
 }
 .client_table_box {
-    padding: 3rem 0;
-    /* background-color: white; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+}
+.client_table_box div {
+    flex: 1 1 300px;
     border-radius: var(--borderRadius30);
-    overflow: auto hidden;
+    border: var(--border-light-theme);
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    box-shadow: var(--bsh-theme2);
 }
 
+.client_table_box > div p {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+
+    word-break: break-all;
+}
 /* one client */
 .one_client_screen {
     /* padding: 1.5rem 0; */
@@ -158,20 +174,18 @@
 }
 
 @media (max-width: 765px) {
-    .client_table_box {
-        overflow: auto;
-    }
     .client_in_process_box {
         grid-template-columns: 1fr;
     }
     .one_client_header_box_img {
         grid-template-columns: repeat(2, minmax(20rem, 1fr));
     }
-    .client_table_box {
-        overflow: scroll hidden;
-    }
+
     .full_paid_info_list li {
         font-size: 2rem;
+    }
+    .client_table_box > div {
+        font-size: 1.7rem;
     }
 }
 

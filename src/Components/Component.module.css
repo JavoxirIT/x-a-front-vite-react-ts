@@ -183,6 +183,7 @@
     border: var(--border);
     padding: 1rem;
     border-radius: var(--borderRadius30);
+    box-shadow: var(--bsh-theme2);
 }
 .card__content {
     height: 100%;
